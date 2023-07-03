@@ -1,29 +1,30 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const express = require('express');
 
 // Prompt the user for input using inquirer
 inquirer
   .prompt([
     {
       name: 'text',
-      message: 'Enter up to three characters:',
+      message: 'Enter your logo\'s three characters:',
       validate: (input) => {
         return input.length <= 3;
       }
     },
     {
       name: 'textColor',
-      message: 'Enter text color:'
+      message: 'Enter logo text color:'
     },
     {
       name: 'shape',
       type: 'list',
-      message: 'Choose a shape:',
+      message: 'Choose a shape for your logo:',
       choices: ['circle', 'triangle', 'square']
     },
     {
       name: 'shapeColor',
-      message: 'Enter shape color:'
+      message: 'Enter your shape color:'
     }
   ])
   .then((answers) => {
@@ -40,5 +41,19 @@ inquirer
     fs.writeFile('logo.svg', svgContent, (err) => {
       if (err) throw err;
       console.log('Generated logo.svg');
+
+      // Create an Express app
+      const app = express();
+
+      // Serve the logo.svg file
+      app.get('/', (req, res) => {
+        res.sendFile(__dirname + '/logo.svg');
+      });
+
+      // Start the server
+      const port = 3001;
+      app.listen(port, () => {
+        console.log(`Server started on http://localhost:${port}`);
+      });
     });
   });
