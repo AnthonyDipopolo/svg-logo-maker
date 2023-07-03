@@ -23,7 +23,10 @@ inquirer
       name: 'text',
       message: "Enter your logo's three characters:",
       validate: (input) => {
-        return input.length <= 3;
+        if (input.length !== 3) {
+            return 'Please enter exactly three characters.';
+          }
+          return true;
       },
     },
     {

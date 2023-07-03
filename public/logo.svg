@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="300" height="200">
         <svg width="300" height="200">
-      <rect x="75" y="75" width="300" height="200" fill="blue" />
+    <polygon points="150, 20 290, 200 10, 200" fill="blue" />
     </svg>
-        <text x="190" y="140" fill="red" text-anchor="middle" dominant-baseline="middle" font-size="100">RED</text>
+        <text x="155" y="150" fill="red" text-anchor="middle" dominant-baseline="middle" font-size="75">NBA</text>
       </svg>
